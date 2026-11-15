@@ -310,7 +310,9 @@ function planFetch(store: Store, args: FetchArgs): FetchPlan {
 /** Chunk a pack into sideband-1 packets, each within the pkt-line limit. */
 function sidebandPackets(pack: Buffer): Buffer[] {
   const packets: Buffer[] = [];
-  const CHUNK = 65519;
+  // A pkt-line's length counts itself and must stay ≤ 65520: 65515 bytes of
+  // pack data plus the band byte plus the 4 length digits is exactly that.
+  const CHUNK = 65515;
   for (let at = 0; at < pack.length; at += CHUNK) {
     const slice = pack.subarray(at, at + CHUNK);
     packets.push(pktLine(Buffer.concat([Buffer.from([1]), slice])));
