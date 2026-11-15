@@ -1,0 +1,1 @@
+{"description":"A standalone GitHub-compatible git forge: smart HTTP, REST v3, GraphQL and MCP over one in-memory store.","license":"MIT","name":"anvil-forge","private":true,"type":"module","version":"1.0.0"}
